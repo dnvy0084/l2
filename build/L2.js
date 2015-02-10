@@ -1,6 +1,6 @@
 (function (){
 	window.onload = function()
 	{
-		console.log( "init 3" ); 
+		console.log( "init 4" ); 
 	} 
 })();  
