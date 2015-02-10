@@ -34,7 +34,8 @@ module.exports = function(grunt) {
         concat: {
             basic: {
                 src: [
-                    "src/*.js" 
+                    "src/L2.js",
+                    "src/*.js"
                 ],
 
                 dest: "build/<%= pkg.name %>.js" 

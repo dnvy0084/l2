@@ -59,9 +59,3 @@ L2.mix = function( a, b, t )
 {
 	return a + t * ( b - a );
 };
-(function (){
-	window.onload = function()
-	{
-		console.log( "init 5 " ); 
-	} 
-})();  
