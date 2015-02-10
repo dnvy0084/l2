@@ -12,6 +12,8 @@
     <script type="text/javascript" src="../build/L2.js"></script>
     <script>
         console.log( L2 );
+        
+        L2.version();
 
         QUnit.test( "L2.math test", function( assert ) {
 
@@ -59,6 +61,8 @@
             b.x = 1000;
 
             assert.equal( c.x, 56, "clone" );
+
+            console.log( new L2.Stage() );
         });
     </script>
 </body>
