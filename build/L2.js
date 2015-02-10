@@ -34,7 +34,7 @@ L2.zfill = function( str, nDigit, cPrefix )
 
 // frac( 1.045 ) --> 0.045: return fractional part
 L2.frac = function( fValue )
-{
+{ 
 	return fValue - parseInt( fValue );
 };
 
@@ -59,9 +59,3 @@ L2.mix = function( a, b, t )
 {
 	return a + t * ( b - a );
 };
-(function (){
-	window.onload = function()
-	{
-		console.log( "init 5 " ); 
-	} 
-})();  

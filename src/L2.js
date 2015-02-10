@@ -34,7 +34,7 @@ L2.zfill = function( str, nDigit, cPrefix )
 
 // frac( 1.045 ) --> 0.045: return fractional part
 L2.frac = function( fValue )
-{
+{ 
 	return fValue - parseInt( fValue );
 };
 
