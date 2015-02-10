@@ -5,130 +5,143 @@
 *
 *************************************************/
 
+
 L2.Vec2 = function( x, y )
 {
-	this.x = x || 0;
-	this.y = y || 0;
+	this.raw = new L2.Vec2.ARRAY_TYPE( 2 );
+
+	this.raw[0] = x || 0;
+	this.raw[1] = y || 0;
 };
+
+L2.Vec2.ARRAY_TYPE = Float32Array;
 
 L2.Vec2.prototype = {
 
 	constructor: L2.Vec2,
 
-	set: function( array )
+	get x(){ return this.raw[0]; },
+	set x( value ){ this.raw[0] = value; },
+
+	get y(){ return this.raw[1]; },
+	set y( value ){ this.raw[1] = value; },
+
+	set: function( raw )
 	{
-		this.x = array[0] || 0;
-		this.y = array[1] || 0;
+		this.raw[0] = raw[0] || 0;
+		this.raw[1] = raw[1] || 0;
+
+		return this;
 	},
 
 	add: function( v )
 	{
-		this.x += v.x;
-		this.y += v.y;
+		this.raw[0] += v.raw[0];
+		this.raw[1] += v.raw[1];
 
 		return this;
 	},
 
 	sub: function( v )
 	{
-		this.x -= v.x;
-		this.y -= v.y;
+		this.raw[0] -= v.raw[0];
+		this.raw[1] -= v.raw[1];
 
 		return this;
 	},
 
 	mul: function( v )
 	{
-		this.x *= v.x;
-		this.y *= v.y;	
+		this.raw[0] *= v.raw[0];
+		this.raw[1] *= v.raw[1];	
 
 		return this;
 	},
 
 	div: function( v )
 	{
-		this.x /= v.x;
-		this.y /= v.y;	
+		this.raw[0] /= v.raw[0];
+		this.raw[1] /= v.raw[1];	
 	},
 
 	scale: function( scalar )
 	{
-		this.x *= scalar;
-		this.y *= scalar;
+		this.raw[0] *= scalar;
+		this.raw[1] *= scalar;
 
 		return this;
 	},
 
 	dot: function( v )
 	{
-		return this.x * v.x + this.y * v.y;
+		return this.raw[0] * v.raw[0] + this.raw[1] * v.raw[1];
 	},
 
 	normal: function( ccw )
 	{
-		var x = this.x,
-			y = this.y;
+		var x = this.raw[0],
+			y = this.raw[1];
 
 		if( ccw )
 		{
-			this.x = y;
-			this.y = -x;
+			this.raw[0] = y;
+			this.raw[1] = -x;
 		}
 		else
 		{
-			this.x = -y;
-			this.y = x;
+			this.raw[0] = -y;
+			this.raw[1] = x;
 		}
 			
 		return this;
 	},
 
-	normalize: function()
+	normalize: function() 
 	{
 		var len = this.length();
 
-		this.x /= len;
-		this.y /= len;
+		this.raw[0] /= len;
+		this.raw[1] /= len;
 
 		return this;	
 	},
 
 	length: function()
 	{	
-		var x = this.x,
-			y = this.y;
+		var x = this.raw[0],
+			y = this.raw[1];
 
 		return Math.sqrt( x * x + y * y );
 	},
 
 	squareLength: function()
 	{
-		var x = this.x,
-			y = this.y;
+		var x = this.raw[0],
+			y = this.raw[1];
 
 		return x * x + y * y;
 	},
 
 	rotate: function( t )
 	{
-		var x = this.x,
-			y = this.y,
+		var x = this.raw[0],
+			y = this.raw[1],
 			cos = Math.cos( t ),
 			sin = Math.sin( t );
 
-		this.x = cos * x - sin * y;
-		this.y = sin * x + cos * y;
+		this.raw[0] = cos * x - sin * y;
+		this.raw[1] = sin * x + cos * y;
 
 		return this;
 	},
 
 	clone: function()
 	{
-		return new L2.Vec2( this.x, this.y );
+		return new L2.Vec2().set( this.raw );
 	},
 
 	toString: function()
 	{
-		return "(" + this.x + ", " + this.y + ")";
+		return "(" + this.raw[0] + ", " + this.raw[1] + ")";
 	}
 };

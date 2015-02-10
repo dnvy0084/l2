@@ -14,7 +14,7 @@
         console.log( L2 );
 
         QUnit.test( "L2.math test", function( assert ) {
-          
+
             var v = new L2.Vec2();
 
             assert.ok( v, "Vec2 created, " + v.toString() );
@@ -26,19 +26,39 @@
             assert.equal( v.x, 100, "set x value, " + v.toString() );
             assert.equal( v.y, 100, "set y value, " + v.toString() );
 
+            v.add( new L2.Vec2( 10, 10 ) );
+
+            assert.equal( v.x, 110, "add, " + v.toString() );
+
+            v.sub( new L2.Vec2( 10, 10 ) );
+
+            assert.equal( v.x, 100, "sub, " + v.toString() );
+
+            v.mul( new L2.Vec2( 2, 4 ) );
+
+            assert.equal( v.y, 400, "mul, " + v.toString() );
+
+            v.div( new L2.Vec2( 2, 4 ) );
+
+            assert.equal( v.x, 100, "div, " + v.toString() );
+
             v.normalize();
-            assert.equal( parseInt( v.length() + 0.5 ), 1, "normalize, " + v.toString() );
+            assert.equal( parseInt( v.length() + 0.000001 ), 1, "normalize, " + v.toString() );
 
             v.rotate( -Math.PI / 4 );
-            console.log( v.length() );
             assert.equal( v.x, 1, "rotate, " + v.toString() );
 
-            var b = new L2.Vec2( 100, 100 );
-            assert.equal( b.dot( v ), 100, "dot, " + b.toString() );
+            var b = new L2.Vec2( 56, 100 );
+            assert.equal( parseInt( b.dot( v ) + 0.000001 ), 56, "dot, " + b.toString() );
 
             v.scale( 100 );
 
             assert.equal( Math.ceil( v.length() ), 100, "noramlize -> scale -> length" );
+
+            var c = b.clone();
+            b.x = 1000;
+
+            assert.equal( c.x, 56, "clone" );
         });
     </script>
 </body>
