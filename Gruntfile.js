@@ -53,13 +53,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Load the plugin that provides the "concat" task.
-    grunt.loadNpmTasks( 'grunt-contrib-concat');
+    grunt.loadNpmTasks( 'grunt-contrib-concat' );
 
     // load watch
-    grunt.loadNpmTasks( 'grunt-contrib-watch');
+    grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
-    // load shell
-    grunt.loadNpmTasks( 'grunt-shell');
+    // load shell command plugins
+    grunt.loadNpmTasks( 'grunt-shell' );
 
     // Default task(s)
     grunt.registerTask('default', ['concat', 'uglify']);
