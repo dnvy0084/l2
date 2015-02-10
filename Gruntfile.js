@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                 src: [
                     "src/L2.js",
                     "src/*.js",
+                    "src/math/*.js",
                     "src/display/Container.js",
                     "src/display/*.js"
                 ],
