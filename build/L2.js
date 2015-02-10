@@ -69,6 +69,12 @@ L2.Vec2.prototype = {
 
 	constructor: L2.Vec2,
 
+	set: function( array )
+	{
+		this.x = array[0] || 0;
+		this.y = array[1] || 0;
+	},
+
 	add: function( v )
 	{
 		this.x += v.x;
@@ -168,6 +174,16 @@ L2.Vec2.prototype = {
 		this.y = sin * x + cos * y;
 
 		return this;
+	},
+
+	clone: function()
+	{
+		return new L2.Vec2( this.x, this.y );
+	},
+
+	toString: function()
+	{
+		return "(" + this.x + ", " + this.y + ")";
 	}
 };
 /*************************************************
