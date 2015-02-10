@@ -59,7 +59,41 @@ L2.mix = function( a, b, t )
 {
 	return a + t * ( b - a );
 };
+/*************************************************
+*
+* Core displayObject container
+*
+*************************************************/
 
+L2.Container = function()
+{
+	this.children = [];
+};
+
+L2.Container.prototype = {
+
+	constructor: L2.Container,
+
+	addChild: function( child )
+	{
+		this.addChildAt( child, this.children.length );
+	},
+
+	addChildAt: function( child, index )
+	{
+		this.children[ index ] = child;
+	},
+
+	removeChild: function( child )
+	{
+  
+	},
+
+	removeChildAt: function( child, index )
+	{
+ 
+	}
+};
 L2.Stage = function()
 {
 	

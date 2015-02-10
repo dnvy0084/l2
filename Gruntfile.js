@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                 src: [
                     "src/L2.js",
                     "src/*.js",
+                    "src/display/Container.js",
                     "src/display/*.js"
                 ],
 
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['src/*.js'],
+                files: ['src/**/*.js'],
                 tasks: ['concat', 'uglify', 'shell']
             },
         }
