@@ -86,7 +86,7 @@ L2.Container.prototype = {
 
 	removeChild: function( child )
 	{
-  
+  		
 	},
 
 	removeChildAt: function( child, index )
