@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QUnit basic example</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.17.1.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="http://code.jquery.com/qunit/qunit-1.17.1.js"></script>
+    <script type="text/javascript" src="../build/L2.js"></script>
+    <script>
+        console.log( L2 );
+
+        QUnit.test( "L2.math test", function( assert ) {
+          
+            var v = new L2.Vec2();
+
+            assert.ok( v, "Vec2 created, " + v.toString() );
+            assert.equal( v.x, 0, "set default value, " + v.toString() );
+            assert.equal( v.y, 0, "set default value, " + v.toString() );
+
+            v.x = 100, v.y = 100;
+
+            assert.equal( v.x, 100, "set x value, " + v.toString() );
+            assert.equal( v.y, 100, "set y value, " + v.toString() );
+
+            v.normalize();
+            assert.equal( parseInt( v.length() + 0.5 ), 1, "normalize, " + v.toString() );
+
+            v.rotate( -Math.PI / 4 );
+            console.log( v.length() );
+            assert.equal( v.x, 1, "rotate, " + v.toString() );
+
+            var b = new L2.Vec2( 100, 100 );
+            assert.equal( b.dot( v ), 100, "dot, " + b.toString() );
+
+            v.scale( 100 );
+
+            assert.equal( Math.ceil( v.length() ), 100, "noramlize -> scale -> length" );
+        });
+    </script>
+</body>
+</html>

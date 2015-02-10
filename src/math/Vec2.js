@@ -1,3 +1,10 @@
+
+/*************************************************
+*
+* Vector2D instance;
+*
+*************************************************/
+
 L2.Vec2 = function( x, y )
 {
 	this.x = x || 0;
@@ -94,7 +101,7 @@ L2.Vec2.prototype = {
 		return Math.sqrt( x * x + y * y );
 	},
 
-	lengthNonSqrt: function()
+	squareLength: function()
 	{
 		var x = this.x,
 			y = this.y;

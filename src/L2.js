@@ -29,7 +29,7 @@ L2.zfill = function( str, nDigit, cPrefix )
 		str = cPrefix + str;
 	}
 
-	return str;
+	return str; 
 };
 
 // frac( 1.045 ) --> 0.045: return fractional part
@@ -57,5 +57,5 @@ L2.decToHex = function( nDec, nDigit, cPrefix )
 // mix( 1, 2, 0.5 ) --> 1.5;
 L2.mix = function( a, b, t )
 {
-	return a + t * ( b - a );
+	return a + t * ( b - a ); 
 };

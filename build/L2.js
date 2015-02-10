@@ -29,7 +29,7 @@ L2.zfill = function( str, nDigit, cPrefix )
 		str = cPrefix + str;
 	}
 
-	return str;
+	return str; 
 };
 
 // frac( 1.045 ) --> 0.045: return fractional part
@@ -57,8 +57,15 @@ L2.decToHex = function( nDec, nDigit, cPrefix )
 // mix( 1, 2, 0.5 ) --> 1.5;
 L2.mix = function( a, b, t )
 {
-	return a + t * ( b - a );
+	return a + t * ( b - a ); 
 };
+
+/*************************************************
+*
+* Vector2D instance;
+*
+*************************************************/
+
 L2.Vec2 = function( x, y )
 {
 	this.x = x || 0;
@@ -155,7 +162,7 @@ L2.Vec2.prototype = {
 		return Math.sqrt( x * x + y * y );
 	},
 
-	lengthNonSqrt: function()
+	squareLength: function()
 	{
 		var x = this.x,
 			y = this.y;
@@ -208,20 +215,29 @@ L2.Container.prototype = {
 
 	addChildAt: function( child, index )
 	{
-		this.children[ index ] = child;
+		this.children.splice( index, 0, child );
+
+		child.parent = this;
+		child.stage = this.stage;
 	},
 
 	removeChild: function( child )
 	{
-  		
+  		var index = this.children.indexOf( child );	
+
+  		if( index == -1 ) return null;
+
+  		return this.removeChildAt( index );
 	},
 
-	removeChildAt: function( child, index )
+	removeChildAt: function( index )
 	{
- 
+		if( index < 0 || index > this.children.length ) return null;
+
+ 		return this.children.splice( index, 1 )[0];
 	}
 };
 L2.Stage = function()
-{
-	
-}
+{ 
+
+} 

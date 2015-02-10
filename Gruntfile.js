@@ -3,6 +3,23 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        // concat 설정. 
+        concat: {
+            basic: {
+                src: [
+                    "src/L2.js",
+                    "src/*.js",
+                    "src/math/*.js",
+                    "src/display/Container.js",
+                    "src/display/*.js"
+                ],
+
+                dest: "build/<%= pkg.name %>.js" 
+            }
+        },
+
+
         // uglify 설정. 
         uglify: {
             options: {
@@ -30,27 +47,18 @@ module.exports = function(grunt) {
             }
         },
 
-        // concat 설정. 
-        concat: {
-            basic: {
-                src: [
-                    "src/L2.js",
-                    "src/*.js",
-                    "src/math/*.js",
-                    "src/display/Container.js",
-                    "src/display/*.js"
-                ],
-
-                dest: "build/<%= pkg.name %>.js" 
-            }
+        // Project configuration.
+        qunit: {
+            all: ['qunit/QunitTest.html']
         },
 
         watch: {
             scripts: {
                 files: ['src/**/*.js'],
-                tasks: ['concat', 'uglify', 'shell']
+                tasks: ['concat', 'uglify', 'qunit']
             },
         }
+
     });
 
     // Load the plugin that provides the "uglify" task.
@@ -64,6 +72,9 @@ module.exports = function(grunt) {
 
     // load shell command plugins
     grunt.loadNpmTasks( 'grunt-shell' );
+
+    // load shell command plugins
+    grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 
     // Default task(s)
     grunt.registerTask('default', ['concat', 'uglify', 'shell']);

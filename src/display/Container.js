@@ -20,16 +20,25 @@ L2.Container.prototype = {
 
 	addChildAt: function( child, index )
 	{
-		this.children[ index ] = child;
+		this.children.splice( index, 0, child );
+
+		child.parent = this;
+		child.stage = this.stage;
 	},
 
 	removeChild: function( child )
 	{
-  		
+  		var index = this.children.indexOf( child );	
+
+  		if( index == -1 ) return null;
+
+  		return this.removeChildAt( index );
 	},
 
-	removeChildAt: function( child, index )
+	removeChildAt: function( index )
 	{
- 
+		if( index < 0 || index > this.children.length ) return null;
+
+ 		return this.children.splice( index, 1 )[0];
 	}
 };
