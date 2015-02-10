@@ -59,3 +59,8 @@ L2.mix = function( a, b, t )
 {
 	return a + t * ( b - a );
 };
+
+L2.Stage = function()
+{
+	
+}

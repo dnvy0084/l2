@@ -35,7 +35,8 @@ module.exports = function(grunt) {
             basic: {
                 src: [
                     "src/L2.js",
-                    "src/*.js"
+                    "src/*.js",
+                    "src/display/*.js"
                 ],
 
                 dest: "build/<%= pkg.name %>.js" 
