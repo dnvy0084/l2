@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Performance Test</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.17.1.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="http://code.jquery.com/qunit/qunit-1.17.1.js"></script>
+    <script type="text/javascript" src="../build/L2.js"></script>
+    <script>
+
+        function castIntUsingParseInt( len )
+        {
+            var t;
+
+            for( var i = len / 2, n = i + 0.5; i < len; i++, n++ )
+            {
+                t = parseInt( i );
+            }
+
+            return true;
+        };
+
+        function castIntUsingArrayBuffer( len )
+        {
+            var t, a = new Int32Array( 1 );
+
+            for( var i = len / 2, n = i + 0.5; i < len; i++, n++ )
+            {
+                a[0] = i;
+                t = a[0];
+            }
+
+            return true;
+        };
+
+        QUnit.test( "cast int test", function( assert ) {
+
+            assert.ok( castIntUsingParseInt( 1e6 ), "castIntUsingParseInt" );
+            assert.ok( castIntUsingArrayBuffer( 1e6 ), "castIntUsingArrayBuffer" );
+
+        });
+    </script>
+</body>
+</html>

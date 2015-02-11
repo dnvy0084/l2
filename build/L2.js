@@ -60,6 +60,72 @@ L2.mix = function( a, b, t )
 	return a + t * ( b - a ); 
 };
 
+/**
+* bresenham line raster algorithm
+*/
+L2.rasterLine = function( ax, ay, bx, by, buf, offset )
+{
+	ax = parseInt( ax ), ay = parseInt( ay ),
+	bx = parseInt( bx ), by = parseInt( by );
+
+	var dx = Math.abs( bx - ax ),
+		dy = Math.abs( by - ay ),
+		e, x, y, di, dt, t;
+
+	buf = buf || [];
+	offset = offset || 0;
+
+	if( dx > dy )
+	{
+		di = ax < bx ? +1 : -1;
+		dt = ay < by ? +1 : -1;
+		t = bx + di;
+		e = 0;
+
+		for( x = ax, y = ay; x != t; x += di )
+		{
+			buf[ offset++ ] = x;
+			buf[ offset++ ] = y;
+
+			e += dy;
+
+			if( ( e << 1 ) > dx )
+			{
+				y = y + dt;
+				e -= dx;
+			}
+		}
+	}
+	else
+	{
+		di = ay < by ? +1 : -1;
+		dt = ax < bx ? +1 : -1;
+		t = by + di;
+		e = 0;
+
+		for( x = ax, y = ay; y != t; y += di )
+		{
+			buf[ offset++ ] = x;
+			buf[ offset++ ] = y;
+
+			e += dx;
+
+			if( ( e << 1 ) > dy )
+			{
+				x = x + dt;
+				e -= dy;
+			}
+		}
+	}
+
+	return buf;
+};
+
+L2.rasterLineBetweenVec2 = function( a, b )
+{
+	return L2.rasterLine( a.x, a.y, b.x, b.y );
+};
+
 /*************************************************
 *
 * EventDispatcher
@@ -188,7 +254,7 @@ L2.Stage = function()
  
 L2.Stage.prototype = Object.create( L2.Container.prototype );
 
-
+ 
 
 /*************************************************
 *
