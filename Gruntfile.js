@@ -56,7 +56,16 @@ module.exports = function(grunt) {
                 files: ['src/**/*.js'],
                 tasks: ['concat', 'uglify', 'qunit']
             },
-        }
+        },
+
+        connect: {
+            server: {
+                options: {
+                    port:9001,
+                    base: 'www-root'
+                },
+            },
+        },
 
     });
 
@@ -75,7 +84,10 @@ module.exports = function(grunt) {
     // load shell command plugins
     grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 
+    // load connect plugins: simple http server
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
     // Default task(s)
-    grunt.registerTask('default', ['concat', 'uglify', 'shell']);
+    grunt.registerTask('default', ['concat', 'uglify', 'shell', 'connect']);
 
 };
