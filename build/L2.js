@@ -148,6 +148,7 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 		{
 			buf[ offset++ ] = x,
 			buf[ offset++ ] = Math.round( y ),
+			buf[ offset++ ] = 1;
 
 			y += m;
 		}
@@ -162,6 +163,7 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 		{
 			buf[ offset++ ] = Math.rount( x ),
 			buf[ offset++ ] = x,
+			buf[ offset++ ] = 1;
 
 			x += m;
 		}
