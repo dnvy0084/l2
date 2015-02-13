@@ -168,4 +168,6 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 			x += m;
 		}
 	}
+
+	return buf;
 };
