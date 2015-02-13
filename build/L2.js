@@ -136,7 +136,7 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 
 	var dx = Math.abs( bx - ax ),
 		dy = Math.abs( by - ay ),
-		x = ax, y = ay, t, di;
+		x = ax, y = ay, t, di, f
 
 	if( dx > dy )
 	{
@@ -146,9 +146,15 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 		
 		for( ; x != t; x += di )
 		{
+			f = L2.frac( y );
+
 			buf[ offset++ ] = x,
-			buf[ offset++ ] = Math.round( y ),
-			buf[ offset++ ] = 1;
+			buf[ offset++ ] = Math.floor( y ),
+			buf[ offset++ ] = 1 - f;
+
+			buf[ offset++ ] = x,
+			buf[ offset++ ] = Math.ceil( y ),
+			buf[ offset++ ] = f;
 
 			y += m;
 		}
@@ -161,9 +167,15 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 
 		for( ; y != t; y += di )
 		{
-			buf[ offset++ ] = Math.round( x ),
+			f = L2.frac( x );
+
+			buf[ offset++ ] = Math.floor( x ),
 			buf[ offset++ ] = y,
-			buf[ offset++ ] = 1;
+			buf[ offset++ ] = 1 - f;
+
+			buf[ offset++ ] = Math.ceil( x ),
+			buf[ offset++ ] = y,
+			buf[ offset++ ] = f;
 
 			x += m;
 		}

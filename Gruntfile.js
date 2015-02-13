@@ -58,14 +58,14 @@ module.exports = function(grunt) {
             },
         },
 
-        connect: {
-            server: {
-                options: {
-                    port:9001,
-                    base: 'www-root'
-                },
-            },
-        },
+        // connect: {
+        //     server: {
+        //         options: {
+        //             port:9001,
+        //             base: 'www-root'
+        //         },
+        //     },
+        // },
 
     });
 
@@ -85,9 +85,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 
     // load connect plugins: simple http server
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    // grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Default task(s)
-    grunt.registerTask('default', ['concat', 'uglify', 'shell', 'connect']);
+    grunt.registerTask('default', ['concat', 'uglify', 'shell' ]);
 
 };
