@@ -126,6 +126,48 @@ L2.rasterLineBetweenVec2 = function( a, b )
 	return L2.rasterLine( a.x, a.y, b.x, b.y );
 };
 
+L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
+{
+	ax = parseInt( ax ), ay = parseInt( ay ),
+	bx = parseInt( bx ), by = parseInt( by );
+
+	buf = buf || [];
+	offset = offset || 0;
+
+	var dx = Math.abs( bx - ax ),
+		dy = Math.abs( by - ay ),
+		x = ax, y = ay, t, di;
+
+	if( dx > dy )
+	{
+		m = by > ay ? dy / dx : -dy / dx;
+		di = bx > ax ? +1 : -1;
+		t = bx + di;
+		
+		for( ; x != t; x += di )
+		{
+			buf[ offset++ ] = x,
+			buf[ offset++ ] = Math.round( y ),
+
+			y += m;
+		}
+	}
+	else
+	{
+		m = bx > ax ? dx / dy : -dx / dy;
+		di = by > ay ? +1 : -1;
+		t = by + di;
+
+		for( ; y != t; y += di )
+		{
+			buf[ offset++ ] = Math.rount( x ),
+			buf[ offset++ ] = x,
+
+			x += m;
+		}
+	}
+};
+
 /*************************************************
 *
 * EventDispatcher
