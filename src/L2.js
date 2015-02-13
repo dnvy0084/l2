@@ -171,11 +171,11 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 
 			buf[ offset++ ] = Math.floor( x ),
 			buf[ offset++ ] = y,
-			buf[ offset++ ] = 1// - f;
+			buf[ offset++ ] = 1 - f;
 
 			buf[ offset++ ] = Math.ceil( x ),
 			buf[ offset++ ] = y,
-			buf[ offset++ ] = 1//f;
+			buf[ offset++ ] = f;
 
 			x += m;
 		}
