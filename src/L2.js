@@ -161,7 +161,7 @@ L2.rasterAntialiasingLine = function( ax, ay, bx, by, buf, offset )
 
 		for( ; y != t; y += di )
 		{
-			buf[ offset++ ] = Math.rount( x ),
+			buf[ offset++ ] = Math.round( x ),
 			buf[ offset++ ] = x,
 			buf[ offset++ ] = 1;
 
